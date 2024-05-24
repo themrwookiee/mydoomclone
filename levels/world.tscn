@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dtd3awu35d17y"]
 
-[ext_resource type="PackedScene" uid="uid://caju8ekr0vlto" path="res://player.tscn" id="1_46epo"]
-[ext_resource type="PackedScene" uid="uid://b75yqpbs7qtu5" path="res://enemy.tscn" id="2_u0j47"]
+[ext_resource type="PackedScene" uid="uid://caju8ekr0vlto" path="res://characters/player/player.tscn" id="1_ee4d0"]
+[ext_resource type="PackedScene" uid="uid://b75yqpbs7qtu5" path="res://characters/enemy/enemy.tscn" id="2_nv1y4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0v3vd"]
 albedo_color = Color(0.434547, 0, 0.0405103, 1)
@@ -87,29 +87,29 @@ environment = SubResource("Environment_dqfbs")
 transform = Transform3D(0.673754, 0.66371, -0.324878, -0.221284, 0.600683, 0.768253, 0.705046, -0.445723, 0.551581, 0, 6.18869, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_46epo")]
+[node name="Player" parent="." instance=ExtResource("1_ee4d0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.46409)
 
-[node name="Enemy" parent="." instance=ExtResource("2_u0j47")]
+[node name="Enemy" parent="." instance=ExtResource("2_nv1y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89253, 0.527558, -1.84102)
 
-[node name="Enemy2" parent="." instance=ExtResource("2_u0j47")]
+[node name="Enemy2" parent="." instance=ExtResource("2_nv1y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65788, 0.527558, -4.42617)
 visible = false
 
-[node name="Enemy3" parent="." instance=ExtResource("2_u0j47")]
+[node name="Enemy3" parent="." instance=ExtResource("2_nv1y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0202, 0.527558, -11.9343)
 visible = false
 
-[node name="Enemy4" parent="." instance=ExtResource("2_u0j47")]
+[node name="Enemy4" parent="." instance=ExtResource("2_nv1y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09742, 0.527558, -10.6899)
 visible = false
 
-[node name="Enemy5" parent="." instance=ExtResource("2_u0j47")]
+[node name="Enemy5" parent="." instance=ExtResource("2_nv1y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3364, 0.527558, 0.440803)
 visible = false
 
-[node name="Enemy6" parent="." instance=ExtResource("2_u0j47")]
+[node name="Enemy6" parent="." instance=ExtResource("2_nv1y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0673, 0.527558, -18.9037)
 visible = false
 

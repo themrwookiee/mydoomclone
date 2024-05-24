@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bqvmam2dwtvm1"
-path="res://.godot/imported/revolver_shot1.wav-2edc477f04df0cd9542ca2427e07e045.sample"
+path="res://.godot/imported/revolver_shot1.wav-bfd48cc004b67f27a82375c404822333.sample"
 
 [deps]
 
-source_file="res://revolver_shot1.wav"
-dest_files=["res://.godot/imported/revolver_shot1.wav-2edc477f04df0cd9542ca2427e07e045.sample"]
+source_file="res://assets/audio/revolver_shot1.wav"
+dest_files=["res://.godot/imported/revolver_shot1.wav-bfd48cc004b67f27a82375c404822333.sample"]
 
 [params]
 

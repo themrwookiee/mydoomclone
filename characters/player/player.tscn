@@ -1,0 +1,236 @@
+[gd_scene load_steps=12 format=3 uid="uid://caju8ekr0vlto"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_2oqyy"]
+[ext_resource type="Texture2D" uid="uid://dcnehh78kaod8" path="res://assets/images/gun_sprites.png" id="2_cy2p2"]
+[ext_resource type="AudioStream" uid="uid://bqvmam2dwtvm1" path="res://assets/audio/revolver_shot1.wav" id="3_jm4pk"]
+[ext_resource type="Script" path="res://characters/enemy/enemycounterui.gd" id="3_le4db"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kj33m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72gix"]
+atlas = ExtResource("2_cy2p2")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oynpi"]
+atlas = ExtResource("2_cy2p2")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfw40"]
+atlas = ExtResource("2_cy2p2")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtkj3"]
+atlas = ExtResource("2_cy2p2")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ery"]
+atlas = ExtResource("2_cy2p2")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_45n78"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72gix")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oynpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfw40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtkj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8ery")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_2oqyy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00763154, 1.00159, 0)
+shape = SubResource("CapsuleShape3D_kj33m")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+target_position = Vector3(2.08165e-12, 2.08165e-12, -1000)
+collision_mask = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["ui"]]
+
+[node name="GunBase" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/GunBase"]
+position = Vector2(226, -112)
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_45n78")
+animation = &"shoot"
+frame = 1
+frame_progress = 0.435722
+
+[node name="Crosshair" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.298039)
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -35.0
+offset_right = 40.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You died !"
+
+[node name="Button" type="Button" parent="CanvasLayer/DeathScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -15.5
+offset_right = 32.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="WinScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="CanvasLayer/WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -35.0
+offset_right = 40.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You won !"
+
+[node name="Button" type="Button" parent="CanvasLayer/WinScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -7.0
+offset_right = 33.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="EnemyCounterUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_le4db")
+
+[node name="EnemyCountLabel" type="Label" parent="CanvasLayer/EnemyCounterUI"]
+layout_mode = 2
+offset_top = 8.0
+offset_right = 83.0
+offset_bottom = 31.0
+text = "Enemies: 0"
+horizontal_alignment = 2
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_jm4pk")

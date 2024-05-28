@@ -4,7 +4,6 @@ extends CharacterBody3D
 @onready var ray_cast_3d = $RayCast3D
 @onready var shoot_sound = $ShootSound
 
-
 const SPEED = 5.0
 const MOUSE_SENS = 0.5
 
